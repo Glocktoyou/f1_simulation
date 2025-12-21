@@ -414,6 +414,66 @@
             border-radius: 12px;
         }
 
+        /* Animation Preview Styles */
+        .animation-section {
+            margin-top: 25px;
+        }
+
+        .animation-container {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #e10600;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .animation-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #e10600;
+            margin-bottom: 15px;
+        }
+
+        .animation-gif {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(225, 6, 0, 0.3);
+        }
+
+        .animation-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .animation-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #e10600 0%, #ff3838 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .animation-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(225, 6, 0, 0.5);
+        }
+
+        .animation-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .animation-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .telemetry-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -799,6 +859,30 @@
                 <h3 style="margin-bottom: 20px; font-size: 1.5em;">📈 Key Telemetry</h3>
                 <div class="telemetry-grid" id="telemetryStats">
                     <!-- Stats will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Lap Animation Preview -->
+            <div class="result-card animation-section">
+                <h3 style="margin-bottom: 20px; font-size: 1.5em;">🎬 Lap Animation</h3>
+                <div class="animation-container">
+                    <div class="animation-title" id="animationTrackName">📍 Live Telemetry Visualization</div>
+                    <img id="lapAnimation" 
+                         src="../images/lap_animation_silverstone.gif" 
+                         alt="F1 Lap Animation" 
+                         class="animation-gif"
+                         style="display: none;">
+                    <p id="animationPlaceholder" style="color: #888; padding: 40px;">
+                        🏎️ Click "Play Animation" to view the simulated lap with live telemetry overlay
+                    </p>
+                    <div class="animation-controls">
+                        <button class="animation-btn" id="playAnimationBtn" onclick="playAnimation()">
+                            ▶️ Play Animation
+                        </button>
+                        <button class="animation-btn secondary" onclick="openFullscreen()">
+                            🔲 Fullscreen
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1419,6 +1503,9 @@
             // Create speed chart from real telemetry data
             createSpeedChartFromBackend(result.telemetry, trackInfo.length);
 
+            // Update animation for selected track
+            updateAnimationForTrack();
+
             document.getElementById('results').classList.add('show');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
@@ -1647,6 +1734,9 @@
 
             createSpeedChart(track, trackInfo.length, params);
 
+            // Update animation for selected track
+            updateAnimationForTrack();
+
             document.getElementById('results').classList.add('show');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
@@ -1741,6 +1831,70 @@
                     }
                 }
             });
+        }
+
+        // Animation controls
+        function getAnimationPath() {
+            // Return the correct animation path based on selected track
+            if (selectedTrack) {
+                return `../images/lap_animation_${selectedTrack}.gif`;
+            }
+            return '../images/lap_animation_silverstone.gif';
+        }
+
+        function updateAnimationForTrack() {
+            // Update animation title and reset state when track changes
+            const titleEl = document.getElementById('animationTrackName');
+            const img = document.getElementById('lapAnimation');
+            const placeholder = document.getElementById('animationPlaceholder');
+            const btn = document.getElementById('playAnimationBtn');
+            
+            if (selectedTrack && trackData[selectedTrack]) {
+                const trackInfo = trackData[selectedTrack];
+                titleEl.textContent = `📍 ${trackInfo.flag} ${trackInfo.name} - Live Telemetry`;
+            }
+            
+            // Reset animation state
+            img.style.display = 'none';
+            placeholder.style.display = 'block';
+            btn.innerHTML = '▶️ Play Animation';
+        }
+
+        function playAnimation() {
+            const img = document.getElementById('lapAnimation');
+            const placeholder = document.getElementById('animationPlaceholder');
+            const btn = document.getElementById('playAnimationBtn');
+            
+            if (img.style.display === 'none') {
+                // Show and reload GIF to restart animation
+                placeholder.style.display = 'none';
+                img.style.display = 'block';
+                // Force reload with track-specific animation
+                img.src = getAnimationPath() + '?' + new Date().getTime();
+                btn.innerHTML = '⏸️ Hide Animation';
+            } else {
+                // Hide animation
+                img.style.display = 'none';
+                placeholder.style.display = 'block';
+                btn.innerHTML = '▶️ Play Animation';
+            }
+        }
+
+        function openFullscreen() {
+            const img = document.getElementById('lapAnimation');
+            img.style.display = 'block';
+            document.getElementById('animationPlaceholder').style.display = 'none';
+            
+            // Force reload with track-specific animation
+            img.src = getAnimationPath() + '?' + new Date().getTime();
+            
+            if (img.requestFullscreen) {
+                img.requestFullscreen();
+            } else if (img.webkitRequestFullscreen) {
+                img.webkitRequestFullscreen();
+            } else if (img.msRequestFullscreen) {
+                img.msRequestFullscreen();
+            }
         }
     </script>
 </body>

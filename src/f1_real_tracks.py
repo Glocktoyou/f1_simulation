@@ -100,6 +100,35 @@ class F1Vehicle:
         max_speed = np.sqrt((max_lateral_force / current_mass) * abs(radius))
         return max_speed
 
+    def get_engine_force(self, velocity):
+        """Calculate engine force at given velocity using gear/torque model"""
+        if velocity < 0.1:
+            velocity = 0.1
+        
+        # Find optimal gear for current speed
+        best_force = 0
+        for gear_ratio in self.gear_ratios:
+            # Calculate engine RPM for this gear
+            wheel_rpm = (velocity / self.wheel_radius) * (60 / (2 * np.pi))
+            engine_rpm = wheel_rpm * gear_ratio * self.final_drive
+            
+            # Skip if RPM is out of range
+            if engine_rpm < self.idle_rpm or engine_rpm > self.redline_rpm:
+                continue
+            
+            # Interpolate torque from torque curve
+            torque = np.interp(engine_rpm, self.torque_rpm, self.torque_values)
+            
+            # Calculate force at wheels
+            force = (torque * gear_ratio * self.final_drive * self.drivetrain_efficiency) / self.wheel_radius
+            best_force = max(best_force, force)
+        
+        # Fallback: use power-based calculation if no valid gear found
+        if best_force == 0:
+            best_force = (self.max_power * self.drivetrain_efficiency) / max(velocity, 1)
+        
+        return best_force
+
 
 class RealF1Track:
     """Real F1 track with actual corner data"""

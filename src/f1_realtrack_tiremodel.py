@@ -472,7 +472,7 @@ def main():
     """Day 4 - Real tracks validation"""
     
     print("="*70)
-    print("F1 SIMULATOR - DAY 4: REAL TRACKS & VALIDATION")
+    print("F1 SIMULATOR  REAL TRACKS & VALIDATION")
     print("="*70)
     
     # Create vehicle
@@ -526,10 +526,10 @@ def main():
 
 
 def main():
-    """Day 4 - Real tracks validation"""
+    """Real tracks validation"""
     
     print("="*70)
-    print("F1 SIMULATOR - DAY 4: REAL TRACKS & VALIDATION")
+    print("F1 SIMULATOR REAL TRACKS & VALIDATION")
     print("="*70)
     
     # Create vehicle
