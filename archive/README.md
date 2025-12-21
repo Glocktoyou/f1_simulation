@@ -1,1 +1,0 @@
-This folder contains archived files from the root of the project that are not needed for the main portfolio presentation. Safe to delete or keep for reference.
