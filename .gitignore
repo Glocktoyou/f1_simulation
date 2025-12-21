@@ -1,0 +1,46 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Output files (but keep examples)
+f1_telemetry.csv
+f1_lap_simulation.png
+real_track_validation.png
+validation_report.txt
+telemetry_*.csv
+
+# System
+*.log
+Thumbs.db
+
+# Keep these important files
+!tests/
+!docs/
+!examples/
+!README.md
+!PORTFOLIO_GUIDE.md

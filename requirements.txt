@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+pytest
+scipy
+
+## Actions to Take:
+
+### 1. Create Folder Structure:
+```bash
+mkdir src docs outputs examples
+```
