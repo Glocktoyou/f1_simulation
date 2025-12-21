@@ -47,6 +47,22 @@ This project models F1 vehicle lap time performance using advanced physics simul
 
 *Note: Silverstone and Spa show larger discrepancies due to simplified DRS modeling and track-specific aerodynamic optimization, which are areas for future enhancement.*
 
+### 📸 Sample Output Visualizations
+
+#### Lap Time Validation Comparison
+![Real Track Validation](images/real_track_validation.png)
+*Comparison of simulated lap times against real F1 records for Monaco, Silverstone, and Spa circuits*
+
+#### Telemetry Analysis
+![F1 Lap Simulation](images/f1_lap_simulation.png)
+*Detailed telemetry output showing speed, throttle, brake, and g-force data throughout a lap*
+
+#### Validation Results Summary
+![Validation Results](images/validation_results.png)
+*Circuit-by-circuit accuracy analysis with error thresholds*
+
+---
+
 ## 🎬 Demo & Output Examples
 
 ### What You Get
