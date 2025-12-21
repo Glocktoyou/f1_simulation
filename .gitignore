@@ -29,10 +29,11 @@ htmlcov/
 
 # Output files (but keep examples)
 f1_telemetry.csv
-f1_lap_simulation.png
-real_track_validation.png
 validation_report.txt
 telemetry_*.csv
+
+# Keep images folder for README
+!images/
 
 # System
 *.log
