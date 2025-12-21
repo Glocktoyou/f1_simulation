@@ -1,5 +1,10 @@
 # F1 Vehicle Dynamics Lap Time Simulator
 
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-Glocktoyou%2Ff1__simulation-black?style=flat-square&logo=github)](https://github.com/Glocktoyou/f1_simulation)
+[![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/Glocktoyou/f1_simulation)
+
 A high-fidelity physics-based simulator for Formula 1 vehicle performance modeling, including realistic tire dynamics, aerodynamic effects, and real-world circuit validation.
 
 ## 🏎️ Project Overview
