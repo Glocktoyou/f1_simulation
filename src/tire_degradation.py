@@ -555,6 +555,12 @@ if __name__ == "__main__":
                      save_path='compound_comparison.png')
     print("   ✓ Created compound_comparison.png")
     
+    # Demo 2b: Spa tire wear analysis
+    print("\n2b. Analyzing C3 (Medium) compound at Spa-Francorchamps...")
+    plot_tire_degradation('C3', 'Spa', num_laps=30, 
+                         save_path='tire_deg_c3_spa.png')
+    print("   ✓ Created tire_deg_c3_spa.png")
+    
     # Demo 3: Stint simulation with data
     print("\n3. Simulating 25-lap stint on C4 (Soft) at Bahrain...")
     stint_data = simulate_stint('C4', 'Bahrain', num_laps=25, base_lap_time=92.0)
@@ -579,5 +585,6 @@ if __name__ == "__main__":
     print("="*70)
     print("\nGenerated files:")
     print("  - tire_deg_c3_silverstone.png")
+    print("  - tire_deg_c3_spa.png")
     print("  - compound_comparison.png")
     print("\nNext: Run src/race_strategy.py for race strategy optimization!")
