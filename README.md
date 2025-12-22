@@ -161,7 +161,38 @@ Files created:
 ✔️ **DRS Effectiveness** - Drag reduction on straights  
 ✔️ **G-Force Exposure** - Lateral and longitudinal acceleration  
 
+---
 
+## 🌐 Web Interface
+
+An interactive web-based simulator that allows real-time parameter adjustment and visualization.
+
+![Web Simulator Interface](images/web_simulator.png)
+*Interactive F1 Vehicle Dynamics Simulator web interface with real-time parameter tuning*
+
+### Features
+
+- **Track Selection**: Choose from Silverstone, Monaco, or Spa-Francorchamps
+- **Vehicle Setup Panel**: Adjust engine power, downforce, tire grip, mass, and drag coefficient
+- **Preset Configurations**: Quick-load Max Speed, Max Grip, Balanced, or Monaco-specific setups
+- **Real-Time Results**:
+  - Lap time comparison vs real F1 records
+  - Segment-by-segment analysis (F1 Driver vs Simulator)
+  - Speed profile visualization
+  - Key telemetry stats (max speed, average speed, cornering G-force, DRS usage)
+- **Lap Animation**: Watch simulated lap with live telemetry overlay
+
+### Running the Web Interface
+
+```bash
+# Start the API backend
+cd api
+uvicorn main:app --host 0.0.0.0 --port 8080
+
+# Open web/index.html in your browser
+```
+
+---
 
 ## 🚀 Quick Start
 
