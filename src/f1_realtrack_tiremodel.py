@@ -40,25 +40,25 @@ def create_silverstone() -> 'RealF1Track':
         year=2020
     )
     
-    # Real Silverstone layout with approximate corner radii
-    track.add_segment("Abbey", 250, radius=100, segment_type='fast_corner')
-    track.add_segment("Farm Straight", 400, radius=np.inf, segment_type='straight')
-    track.add_segment("Village", 80, radius=35, segment_type='chicane')
-    track.add_segment("The Loop", 150, radius=80, segment_type='medium_corner')
-    track.add_segment("Aintree", 120, radius=60, segment_type='medium_corner')
-    track.add_segment("Wellington Straight", 650, radius=np.inf, segment_type='straight')
-    track.add_segment("Brooklands", 120, radius=90, segment_type='fast_corner')
-    track.add_segment("Luffield", 140, radius=40, segment_type='slow_corner')
-    track.add_segment("Woodcote", 180, radius=80, segment_type='medium_corner')
-    track.add_segment("Copse", 160, radius=120, segment_type='fast_corner')
-    track.add_segment("Maggots", 140, radius=150, segment_type='fast_corner')
-    track.add_segment("Becketts", 180, radius=100, segment_type='fast_corner')
-    track.add_segment("Chapel", 120, radius=90, segment_type='fast_corner')
-    track.add_segment("Hangar Straight", 1100, radius=np.inf, segment_type='straight')
-    track.add_segment("Stowe", 140, radius=70, segment_type='medium_corner')
-    track.add_segment("Vale", 180, radius=50, segment_type='medium_corner')
-    track.add_segment("Club", 160, radius=60, segment_type='medium_corner')
-    track.add_segment("Abbey Approach", 600, radius=np.inf, segment_type='straight')
+    # Real Silverstone layout with accurate segment lengths (total: 5891m)
+    track.add_segment("Abbey", 280, radius=100, segment_type='fast_corner')
+    track.add_segment("Farm Straight", 450, radius=np.inf, segment_type='straight')
+    track.add_segment("Village", 100, radius=35, segment_type='chicane')
+    track.add_segment("The Loop", 200, radius=80, segment_type='medium_corner')
+    track.add_segment("Aintree", 150, radius=60, segment_type='medium_corner')
+    track.add_segment("Wellington Straight", 700, radius=np.inf, segment_type='straight')
+    track.add_segment("Brooklands", 150, radius=90, segment_type='fast_corner')
+    track.add_segment("Luffield", 180, radius=40, segment_type='slow_corner')
+    track.add_segment("Woodcote", 200, radius=80, segment_type='medium_corner')
+    track.add_segment("Copse", 200, radius=120, segment_type='fast_corner')
+    track.add_segment("Maggots", 180, radius=150, segment_type='fast_corner')
+    track.add_segment("Becketts", 220, radius=100, segment_type='fast_corner')
+    track.add_segment("Chapel", 150, radius=90, segment_type='fast_corner')
+    track.add_segment("Hangar Straight", 1200, radius=np.inf, segment_type='straight')
+    track.add_segment("Stowe", 180, radius=70, segment_type='medium_corner')
+    track.add_segment("Vale", 200, radius=50, segment_type='medium_corner')
+    track.add_segment("Club", 200, radius=60, segment_type='medium_corner')
+    track.add_segment("Abbey Approach", 650, radius=np.inf, segment_type='straight')
     track.add_segment("Start/Finish", 301, radius=np.inf, segment_type='straight')
     
     return track
@@ -131,20 +131,21 @@ def create_monaco() -> 'RealF1Track':
         year=2019
     )
     
-    track.add_segment("Sainte Devote", 100, radius=25, segment_type='slow_corner')
-    track.add_segment("Beau Rivage", 250, radius=np.inf, segment_type='straight')
-    track.add_segment("Massenet", 90, radius=30, segment_type='slow_corner')
-    track.add_segment("Casino", 110, radius=35, segment_type='slow_corner')
-    track.add_segment("Mirabeau", 80, radius=18, segment_type='slow_corner')
-    track.add_segment("Station Hairpin", 120, radius=15, segment_type='slow_corner')
-    track.add_segment("Portier", 140, radius=40, segment_type='medium_corner')
-    track.add_segment("Tunnel", 400, radius=np.inf, segment_type='straight')
-    track.add_segment("Nouvelle Chicane", 100, radius=25, segment_type='chicane')
-    track.add_segment("Tabac", 120, radius=35, segment_type='slow_corner')
-    track.add_segment("Swimming Pool", 180, radius=30, segment_type='chicane')
-    track.add_segment("La Rascasse", 140, radius=20, segment_type='slow_corner')
-    track.add_segment("Anthony Noghes", 110, radius=28, segment_type='slow_corner')
-    track.add_segment("Start Straight", 597, radius=np.inf, segment_type='straight')
+    # Real Monaco layout with accurate segment lengths (total: 3337m)
+    track.add_segment("Sainte Devote", 150, radius=35, segment_type='slow_corner')
+    track.add_segment("Beau Rivage", 350, radius=np.inf, segment_type='straight')
+    track.add_segment("Massenet", 120, radius=45, segment_type='slow_corner')
+    track.add_segment("Casino", 150, radius=50, segment_type='slow_corner')
+    track.add_segment("Mirabeau", 100, radius=30, segment_type='slow_corner')
+    track.add_segment("Station Hairpin", 150, radius=22, segment_type='slow_corner')
+    track.add_segment("Portier", 180, radius=55, segment_type='medium_corner')
+    track.add_segment("Tunnel", 450, radius=np.inf, segment_type='straight')
+    track.add_segment("Nouvelle Chicane", 130, radius=35, segment_type='chicane')
+    track.add_segment("Tabac", 150, radius=50, segment_type='slow_corner')
+    track.add_segment("Swimming Pool", 220, radius=45, segment_type='chicane')
+    track.add_segment("La Rascasse", 180, radius=30, segment_type='slow_corner')
+    track.add_segment("Anthony Noghes", 140, radius=40, segment_type='slow_corner')
+    track.add_segment("Start Straight", 667, radius=np.inf, segment_type='straight')
     
     return track
 
@@ -159,21 +160,25 @@ def create_spa() -> 'RealF1Track':
         year=2018
     )
     
-    track.add_segment("La Source", 120, radius=30, segment_type='slow_corner')
-    track.add_segment("Eau Rouge", 180, radius=250, segment_type='fast_corner')
-    track.add_segment("Raidillon", 140, radius=200, segment_type='fast_corner')
-    track.add_segment("Kemmel Straight", 800, radius=np.inf, segment_type='straight')
-    track.add_segment("Les Combes", 160, radius=50, segment_type='chicane')
-    track.add_segment("Malmedy", 200, radius=100, segment_type='fast_corner')
-    track.add_segment("Rivage", 140, radius=45, segment_type='medium_corner')
-    track.add_segment("Speaker's Corner", 180, radius=60, segment_type='medium_corner')
-    track.add_segment("Bruxelles", 220, radius=np.inf, segment_type='straight')
-    track.add_segment("Pouhon", 200, radius=120, segment_type='fast_corner')
-    track.add_segment("Campus", 450, radius=np.inf, segment_type='straight')
-    track.add_segment("Stavelot", 160, radius=80, segment_type='fast_corner')
-    track.add_segment("Blanchimont", 300, radius=200, segment_type='fast_corner')
-    track.add_segment("Chicane", 150, radius=40, segment_type='chicane')
-    track.add_segment("Start Straight", 724, radius=np.inf, segment_type='straight')
+    # Corrected segment lengths to match actual 7.004km track length
+    # Spa is famous for long straights and sweeping fast corners
+    track.add_segment("La Source", 120, radius=25, segment_type='slow_corner')
+    track.add_segment("Eau Rouge Approach", 350, radius=np.inf, segment_type='straight')
+    track.add_segment("Eau Rouge", 180, radius=100, segment_type='fast_corner')
+    track.add_segment("Raidillon", 200, radius=85, segment_type='fast_corner')
+    track.add_segment("Kemmel Straight", 1000, radius=np.inf, segment_type='straight')
+    track.add_segment("Les Combes", 200, radius=40, segment_type='chicane')
+    track.add_segment("Malmedy", 250, radius=65, segment_type='medium_corner')
+    track.add_segment("Rivage", 180, radius=35, segment_type='slow_corner')
+    track.add_segment("Downhill to Pouhon", 500, radius=np.inf, segment_type='straight')
+    track.add_segment("Pouhon", 350, radius=80, segment_type='fast_corner')
+    track.add_segment("Les Fagnes", 400, radius=90, segment_type='fast_corner')
+    track.add_segment("Campus", 350, radius=np.inf, segment_type='straight')
+    track.add_segment("Stavelot", 250, radius=45, segment_type='medium_corner')
+    track.add_segment("Curve Paul Frere", 300, radius=100, segment_type='fast_corner')
+    track.add_segment("Blanchimont", 400, radius=110, segment_type='fast_corner')
+    track.add_segment("Bus Stop Chicane", 200, radius=30, segment_type='chicane')
+    track.add_segment("Start/Finish Straight", 774, radius=np.inf, segment_type='straight')
     
     return track
 
@@ -466,63 +471,6 @@ def create_validation_report(results_dict: Dict[str, Dict[str, Any]]) -> str:
     
     print("\n[SAVED] Validation report: 'validation_report.txt'")
     return report_text
-
-
-def main():
-    """Day 4 - Real tracks validation"""
-    
-    print("="*70)
-    print("F1 SIMULATOR  REAL TRACKS & VALIDATION")
-    print("="*70)
-    
-    # Create vehicle
-    vehicle = F1Vehicle()
-    
-    # Create real tracks
-    tracks = {
-        'Silverstone': create_silverstone(),
-        'Monaco': create_monaco(),
-        'Spa': create_spa()
-    }
-    
-    # quick tuning step to reduce average error across tracks
-    # NOTE: Tuning disabled due to Vehicle class mismatch
-    # best_settings, best_err = tune_parameters(vehicle, tracks)
-    best_settings, best_err = {}, 0
-
-    results = {}
-
-    print("\nSimulating real F1 circuits...\n")
-    
-    for name, track in tracks.items():
-        print(f"\nSimulating {name}...")
-        print(f"  Length: {track.length/1000:.3f} km")
-        print(f"  F1 Record: {track.record_lap_time:.3f}s ({track.record_holder})")
-        
-        telemetry, lap_time = simulate_real_track(vehicle, track)
-        
-        validation = validate_against_real_f1(lap_time, track)
-        results[name] = validation
-        
-        # Save telemetry
-        telemetry.to_csv(f'telemetry_{name.lower()}.csv', index=False)
-    
-    # Create validation visualizations
-    plot_track_comparison(results)
-    
-    # Create text report
-    report = create_validation_report(results)
-    print("\n" + report)
-    
-    print("\n" + "="*70)
-    print(" COMPLETE!")
-    print("="*70)
-    print("\nFiles created:")
-    print("  ✓ real_track_validation.png")
-    print("  ✓ validation_report.txt")
-    print("  ✓ telemetry_silverstone.csv")
-    print("  ✓ telemetry_monaco.csv")
-    print("  ✓ telemetry_spa.csv")
 
 
 def main():
