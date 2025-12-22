@@ -250,7 +250,7 @@ plot_tire_degradation('C3', 'Silverstone', num_laps=30,
 
 ### Race Strategy Optimizer
 
-Monte Carlo-based race strategy simulator with tire degradation integration.
+Deterministic race strategy simulator with tire degradation integration.
 
 **Features:**
 - **Full Race Simulation** with realistic tire behavior

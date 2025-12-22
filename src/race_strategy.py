@@ -3,7 +3,7 @@ F1 Race Strategy Optimizer
 Author: F1 Simulation Team
 Date: December 2025
 
-Race strategy optimization using Monte Carlo simulation with realistic tire degradation.
+Race strategy optimization using deterministic simulation with realistic tire degradation.
 Analyzes different pit stop strategies to find optimal race approach.
 
 Features:

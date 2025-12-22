@@ -16,6 +16,7 @@ This module extends the F1 simulation without modifying existing code.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Optional
 import sys
@@ -448,8 +449,6 @@ def compare_compounds(track_name: str = 'Silverstone', num_laps: int = 40,
         avg_speed: Average lap speed
         save_path: Optional path to save figure
     """
-    import pandas as pd
-    
     compounds = ['C1', 'C2', 'C3', 'C4', 'C5']
     colors = ['#3498db', '#2ecc71', '#f39c12', '#e74c3c', '#9b59b6']
     
@@ -512,8 +511,6 @@ def simulate_stint(compound: str, track_name: str = 'Silverstone',
     Returns:
         DataFrame with lap-by-lap data
     """
-    import pandas as pd
-    
     model = TireDegradationModel(compound, track_name)
     
     data = []
