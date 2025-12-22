@@ -32,6 +32,11 @@ f1_telemetry.csv
 validation_report.txt
 telemetry_*.csv
 
+# Tire degradation and race strategy output images
+tire_deg_*.png
+compound_comparison.png
+strategy_*.png
+
 # Keep images folder for README
 !images/
 

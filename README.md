@@ -194,6 +194,139 @@ uvicorn main:app --host 0.0.0.0 --port 8080
 
 ---
 
+## 🏁 Advanced Features
+
+### Tire Degradation Model
+
+A comprehensive tire degradation system modeling Pirelli F1 compounds with realistic physics.
+
+**Features:**
+- **5 Pirelli Compounds** (C1-C5: Hard to Hyper-Soft)
+  - Unique characteristics: grip, wear rate, optimal temperature windows
+  - Cliff effect modeling (sudden grip drop-off)
+- **Track-Specific Abrasiveness** 
+  - Monaco, Silverstone, Spa, Bahrain, and more
+- **Physics-Based Degradation**
+  - Surface wear from sliding/abrasion
+  - Thermal degradation (graining, blistering)
+  - Temperature dynamics (surface and core temps)
+  - Flatspot damage from lockups
+
+**Usage Example:**
+
+```python
+from src.tire_degradation import TireDegradationModel, plot_tire_degradation
+
+# Create tire model
+tire = TireDegradationModel(compound='C3', track_name='Silverstone')
+
+# Simulate laps
+for lap in range(30):
+    tire.simulate_lap(avg_speed_kmh=200.0)
+    grip = tire.get_grip_multiplier()
+    remaining = tire.get_remaining_life()
+    print(f"Lap {lap+1}: Grip={grip:.2%}, Remaining={remaining} laps")
+
+# Visualize degradation
+plot_tire_degradation('C3', 'Silverstone', num_laps=30, 
+                     save_path='tire_analysis.png')
+```
+
+**Output Examples:**
+
+![Tire Degradation C3 Silverstone](tire_deg_c3_silverstone.png)
+*Single compound analysis showing grip, wear, temperature, and thermal damage progression*
+
+![Compound Comparison](compound_comparison.png)
+*Comparison of all tire compounds showing different wear characteristics*
+
+**Key Methods:**
+- `get_grip_multiplier()` - Current grip relative to fresh tire
+- `simulate_lap()` - Update tire state after one lap
+- `get_lap_time_delta()` - Calculate lap time loss due to degradation
+- `get_remaining_life()` - Estimate laps before cliff effect
+- `plot_tire_degradation()` - Visualize single compound analysis
+- `compare_compounds()` - Compare all compounds on same track
+
+### Race Strategy Optimizer
+
+Monte Carlo-based race strategy simulator with tire degradation integration.
+
+**Features:**
+- **Full Race Simulation** with realistic tire behavior
+- **Strategy Comparison** across multiple pit stop plans
+- **Optimal Pit Window Search** using grid search
+- **Comprehensive Visualization**
+  - Total race time comparison
+  - Lap time evolution
+  - Grip degradation through race
+  - Tire age progression
+  - Strategy summary tables
+
+**Usage Example:**
+
+```python
+from src.race_strategy import RaceStrategySimulator, Strategy, analyze_race
+
+# Quick analysis for a race
+analyze_race(
+    track_name='Monaco',
+    total_laps=78,
+    base_lap_time=72.0,
+    save_path='strategy_monaco.png'
+)
+
+# Custom strategy comparison
+simulator = RaceStrategySimulator(
+    track_name='Silverstone',
+    total_laps=52,
+    base_lap_time=90.0
+)
+
+strategies = [
+    Strategy(name="1-Stop: Soft-Medium", compounds=['C4', 'C3'], pit_laps=[20]),
+    Strategy(name="2-Stop: Soft-Soft-Medium", compounds=['C4', 'C4', 'C3'], 
+             pit_laps=[15, 35]),
+]
+
+results = simulator.compare_strategies(strategies)
+```
+
+**Output Examples:**
+
+![Monaco Strategy](strategy_monaco.png)
+*Complete race strategy analysis for Monaco Grand Prix showing optimal pit strategies*
+
+![Silverstone Strategy](strategy_silverstone.png)
+*Strategy comparison for Silverstone with lap time evolution and grip degradation*
+
+**Key Features:**
+- Automatic strategy generation (1-stop and 2-stop strategies)
+- Pit stop time loss modeling (default: 22 seconds)
+- Fuel effect on lap times
+- Tire-specific grip degradation
+- Ranking by total race time
+- Detailed lap-by-lap telemetry
+
+### Running the Advanced Features
+
+```bash
+# Tire degradation demo
+cd src
+python tire_degradation.py
+
+# Race strategy demo
+python race_strategy.py
+```
+
+**Generated Files:**
+- `tire_deg_c3_silverstone.png` - Single compound analysis
+- `compound_comparison.png` - All compounds compared
+- `strategy_monaco.png` - Monaco strategy analysis
+- `strategy_silverstone.png` - Silverstone strategy analysis
+
+---
+
 ## 🚀 Quick Start
 
 ### Installation
@@ -392,11 +525,11 @@ Run tests with: `pytest tests/ -v`
 ## 🔮 Future Enhancements
 
 - [ ] DRS zone specification by circuit
-- [ ] Tire degradation over race distance
+- [x] **Tire degradation over race distance** (Implemented in `src/tire_degradation.py`)
 - [ ] Fuel load effects on mass and handling
 - [ ] Track temperature effects on tire grip
 - [ ] Variable downforce setup optimization
-- [ ] Multi-lap race simulation
+- [x] **Multi-lap race simulation** (Implemented in `src/race_strategy.py`)
 - [ ] Driver behavior modeling
 - [ ] Weather effects (wet/intermediate compounds)
 
