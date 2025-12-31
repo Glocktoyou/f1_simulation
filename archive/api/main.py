@@ -126,7 +126,7 @@ def get_track(track_name: str):
     return tracks[track_name.lower()]()
 
 
-def analyze_segments(telemetry_df, track: RealF1Track) -> List[SegmentResult]:
+def analyze_segments(telemetry_df, track: 'RealF1Track') -> List[SegmentResult]:
     """Analyze performance for each track segment"""
     segments_results = []
     
