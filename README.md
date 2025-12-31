@@ -236,13 +236,13 @@ plot_tire_degradation('C3', 'Silverstone', num_laps=30,
 
 **Output Examples:**
 
-![Tire Degradation C3 Silverstone](tire_deg_c3_silverstone.png)
+![Tire Degradation C3 Silverstone](images/tire_deg_c3_silverstone.png)
 *Single compound analysis at Silverstone showing grip, wear, temperature, and thermal damage progression*
 
-![Tire Degradation C3 Spa](tire_deg_c3_spa.png)
+![Tire Degradation C3 Spa](images/tire_deg_c3_spa.png)
 *Single compound analysis at Spa-Francorchamps (high abrasiveness track) showing accelerated wear*
 
-![Compound Comparison](compound_comparison.png)
+![Compound Comparison](images/compound_comparison.png)
 *Comparison of all tire compounds showing different wear characteristics*
 
 **Key Methods:**
@@ -325,9 +325,9 @@ python race_strategy.py
 ```
 
 **Generated Files:**
-- `tire_deg_c3_silverstone.png` - Single compound analysis (Silverstone)
-- `tire_deg_c3_spa.png` - Single compound analysis (Spa-Francorchamps)
-- `compound_comparison.png` - All compounds compared
+- `images/tire_deg_c3_silverstone.png` - Single compound analysis (Silverstone)
+- `images/tire_deg_c3_spa.png` - Single compound analysis (Spa-Francorchamps)
+- `images/compound_comparison.png` - All compounds compared
 - `strategy_monaco.png` - Monaco strategy analysis
 - `strategy_silverstone.png` - Silverstone strategy analysis
 
