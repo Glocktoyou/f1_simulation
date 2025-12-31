@@ -384,6 +384,24 @@ You can also use the included `render.yaml` to configure the service as infrastr
 
 After connecting the repo on Render, open the deployed app at `https://<your-service>.onrender.com/app` to view the web UI and run the simulator.
 
+Live demo (deployed): https://f1-simulation-1.onrender.com/app
+
+### API Root Response (live)
+
+The deployed API root returns a small JSON describing endpoints. Example response from the live demo:
+
+```json
+{
+  "name": "F1 Vehicle Dynamics Simulator API",
+  "version": "1.0.0",
+  "endpoints": {
+    "GET /tracks": "List available tracks",
+    "POST /simulate": "Run simulation with custom parameters",
+    "GET /defaults": "Get default vehicle parameters"
+  }
+}
+```
+
 If you want, I can:
 
 - Prepare a short PR with these files and the `render.yaml` (already added), or
