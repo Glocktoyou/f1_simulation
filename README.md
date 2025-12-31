@@ -7,6 +7,8 @@
 
 -> 🔗 **Web App (deployed):** [https://f1-simulation-1.onrender.com/app](https://f1-simulation-1.onrender.com/app) — click to launch the simulator UI in your browser.
 
+[![Live Demo](https://img.shields.io/website?down_message=down&up_message=live&url=https%3A%2F%2Ff1-simulation-1.onrender.com%2Fapp)](https://f1-simulation-1.onrender.com/app)
+
 A high-fidelity physics-based simulator for Formula 1 vehicle performance modeling, including realistic tire dynamics, aerodynamic effects, and real-world circuit validation.
 
 ## 🏎️ Project Overview
