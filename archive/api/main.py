@@ -13,10 +13,14 @@ from fastapi import FastAPI, HTTPException
 import logging
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, TYPE_CHECKING
 import numpy as np
+
+if TYPE_CHECKING:
+    # Import only for type checking to satisfy linters/static analyzers
+    from f1_realtrack_tiremodel import RealF1Track
 
 # Heavy simulation modules are imported lazily inside handlers to avoid
 # long import-time work that can break platform startup.
@@ -126,7 +130,7 @@ def get_track(track_name: str):
     return tracks[track_name.lower()]()
 
 
-def analyze_segments(telemetry_df, track: 'RealF1Track') -> List[SegmentResult]:
+def analyze_segments(telemetry_df, track: RealF1Track) -> List[SegmentResult]:
     """Analyze performance for each track segment"""
     segments_results = []
     
@@ -158,7 +162,14 @@ def analyze_segments(telemetry_df, track: 'RealF1Track') -> List[SegmentResult]:
 
 @app.get("/")
 async def root():
-    """Serve the main page or API info"""
+    """Serve the main page or redirect to the web UI when available."""
+    # If the web UI exists in the archive/web folder, redirect to `/app`.
+    web_dir = os.path.join(os.path.dirname(__file__), '..', 'web')
+    index_path = os.path.join(web_dir, 'index.html')
+    if os.path.exists(index_path):
+        # Redirect to deployed Render app by default
+        return RedirectResponse(url="https://f1-simulation-1.onrender.com/app")
+
     return {
         "name": "F1 Vehicle Dynamics Simulator API",
         "version": "1.0.0",
@@ -298,5 +309,5 @@ if os.path.exists(web_dir):
 if __name__ == "__main__":
     import uvicorn
     print("Starting F1 Simulator API...")
-    print("Open http://localhost:8000/app in your browser")
+    print("Open https://f1-simulation-1.onrender.com/app in your browser")
     uvicorn.run(app, host="0.0.0.0", port=8000)
