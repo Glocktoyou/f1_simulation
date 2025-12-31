@@ -5,6 +5,8 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Glocktoyou%2Ff1__simulation-black?style=flat-square&logo=github)](https://github.com/Glocktoyou/f1_simulation)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/Glocktoyou/f1_simulation)
 
+> 🔗 **Web App (local):** [Open the Web Interface](http://localhost:8000/app) — click to launch the simulator UI in your browser.
+
 A high-fidelity physics-based simulator for Formula 1 vehicle performance modeling, including realistic tire dynamics, aerodynamic effects, and real-world circuit validation.
 
 ## 🏎️ Project Overview
