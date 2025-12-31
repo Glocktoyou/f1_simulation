@@ -19,7 +19,7 @@ from typing import Optional, List, Dict, Any
 import numpy as np
 
 # Heavy simulation modules are imported lazily inside handlers to avoid
-# long import-time work that can break platform startup (Railway / Uvicorn).
+# long import-time work that can break platform startup.
 
 app = FastAPI(
     title="F1 Vehicle Dynamics Simulator API",
