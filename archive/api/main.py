@@ -17,11 +17,8 @@ from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import numpy as np
 
-from f1_simulation import F1Vehicle
-from f1_realtrack_tiremodel import (
-    create_silverstone, create_monaco, create_spa,
-    simulate_real_track, validate_against_real_f1, RealF1Track
-)
+# Heavy simulation modules are imported lazily inside handlers to avoid
+# long import-time work that can break platform startup (Railway / Uvicorn).
 
 app = FastAPI(
     title="F1 Vehicle Dynamics Simulator API",
@@ -80,7 +77,7 @@ class SimulationResponse(BaseModel):
     telemetry: Dict[str, List[float]]
 
 
-def apply_params_to_vehicle(vehicle: F1Vehicle, params: VehicleParams) -> F1Vehicle:
+def apply_params_to_vehicle(vehicle, params: VehicleParams):
     """Apply user parameters to vehicle model"""
     # Power: convert HP to Watts (1 HP = 746 W)
     vehicle.max_power = params.power * 746
@@ -102,17 +99,20 @@ def apply_params_to_vehicle(vehicle: F1Vehicle, params: VehicleParams) -> F1Vehi
     return vehicle
 
 
-def get_track(track_name: str) -> RealF1Track:
+def get_track(track_name: str):
     """Get track object by name"""
+    # Lazy import to avoid expensive module initialization at import time
+    from f1_realtrack_tiremodel import create_silverstone, create_monaco, create_spa
+
     tracks = {
         "silverstone": create_silverstone,
         "monaco": create_monaco,
         "spa": create_spa
     }
-    
+
     if track_name.lower() not in tracks:
         raise HTTPException(status_code=400, detail=f"Unknown track: {track_name}")
-    
+
     return tracks[track_name.lower()]()
 
 
@@ -214,20 +214,30 @@ async def get_defaults():
     }
 
 
+@app.get("/health")
+async def health():
+    """Lightweight health check for deployment platforms."""
+    return {"status": "ok"}
+
+
 @app.post("/simulate", response_model=SimulationResponse)
 async def run_simulation(request: SimulationRequest):
     """Run simulation with custom vehicle parameters"""
     try:
+        # Lazy-import heavy modules to avoid import-time work
+        from f1_simulation import F1Vehicle
+        from f1_realtrack_tiremodel import simulate_real_track, validate_against_real_f1
+
         # Create vehicle and apply parameters
         vehicle = F1Vehicle()
         vehicle = apply_params_to_vehicle(vehicle, request.vehicle_params)
-        
+
         # Get track
         track = get_track(request.track)
-        
+
         # Run simulation
         telemetry_df, lap_time = simulate_real_track(vehicle, track)
-        
+
         # Validate against real F1 time
         validation = validate_against_real_f1(lap_time, track)
         
