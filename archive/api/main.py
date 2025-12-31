@@ -10,6 +10,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'src')))
 
 from fastapi import FastAPI, HTTPException
+import logging
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -25,6 +26,15 @@ app = FastAPI(
     description="REST API for F1 lap time simulation with adjustable vehicle parameters",
     version="1.0.0"
 )
+
+# Logger for startup/runtime diagnostics
+logger = logging.getLogger("f1_simulation")
+logging.basicConfig(level=logging.INFO)
+
+
+@app.on_event("startup")
+async def _startup_event():
+    logger.info("f1_simulation: startup event fired")
 
 # Enable CORS for frontend
 app.add_middleware(
