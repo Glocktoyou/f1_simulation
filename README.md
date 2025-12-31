@@ -502,25 +502,7 @@ Load_transfer_lat = (a_lat * m * h_cg) / track_width
 
 See [docs/PHYSICS_MODEL.md](docs/PHYSICS_MODEL.md) for detailed derivations.
 
-## 🧪 Testing
-
-Comprehensive test suite ensuring physics accuracy:
-
-```
-✓ test_aero_forces_reasonable
-✓ test_corner_speed_decreases_with_smaller_radius
-✓ test_tire_force_scale_with_normal
-✓ test_add_and_get_segment
-✓ test_create_tracks_lengths
-✓ test_validate_against_real_f1_zero_diff
-✓ test_axle_loads_sum
-✓ test_axle_loads_longitudinal_transfer
-✓ test_combined_tire_force_limits
-✓ test_aero_drs_effect
-✓ test_max_acceleration_positive
-```
-
-Run tests with: `pytest tests/ -v`
+ 
 
 ## 📈 Performance Metrics
 
