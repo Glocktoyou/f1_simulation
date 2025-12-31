@@ -398,34 +398,7 @@ pytest tests/ -v
 # Result: 11/11 tests passing ✓
 ```
 
-## 📁 Project Structure
-
-```
-f1_simulation/
-├── f1_simulation.py              # Main simulator (Monza-style circuit)
-├── f1_realtrack_tiremodel.py     # Real circuit validation
-├── requirements.txt              # Python dependencies
-├── README.md                     # This file
-│
-├── tests/                        # Unit tests (11 passing)
-│   ├── test_physics.py
-│   ├── test_track.py
-│   ├── test_validation.py
-│   └── test_vehicle_physics.py
-│
-├── docs/                         # Technical documentation
-│   ├── PHYSICS_MODEL.md
-│   ├── API.md
-│   └── IMPLEMENTATION_NOTES.md
-│
-├── examples/                     # Usage examples
-│   └── *.py
-│
-└── outputs/                      # Generated results
-    ├── real_track_validation.png
-    ├── validation_report.txt
-    └── telemetry_*.csv
-```
+ 
 
 ## 🔬 Physics Model
 
