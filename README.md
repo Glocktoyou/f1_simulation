@@ -362,32 +362,6 @@ Output:
 
 ---
 
-## 🚀 Deploy to Render (Recommended)
-
-Quick steps to publish the simulator API and frontend on Render with a persistent URL for recruiters:
-
-- Ensure your repo is pushed to GitHub.
-- Render will detect the app at the repository root using the included `Procfile` and `main.py` entrypoint.
-
-Recommended service settings when you create a new Web Service on Render:
-
-- **Environment:** Python
-- **Build Command:** `pip install -r requirements.txt`
-- **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
-- **Instance Type/Plan:** Free (or hobby for production)
-
-Files already present for Render deployment:
-
-- `Procfile` — `web: uvicorn main:app --host 0.0.0.0 --port $PORT`
-- `runtime.txt` — `python-3.11`
-- `requirements.txt` — lists Python dependencies including `fastapi` and `uvicorn`
-
-You can also use the included `render.yaml` to configure the service as infrastructure-as-code. Render will honor the `render.yaml` when the repo is connected.
-
-After connecting the repo on Render, open the deployed app at `https://<your-service>.onrender.com/app` to view the web UI and run the simulator.
-
-Live demo (deployed): https://f1-simulation-1.onrender.com/app
-
 ### API Root Response (live)
 
 The deployed API root returns a small JSON describing endpoints. Example response from the live demo:
@@ -403,11 +377,6 @@ The deployed API root returns a small JSON describing endpoints. Example respons
   }
 }
 ```
-
-If you want, I can:
-
-- Prepare a short PR with these files and the `render.yaml` (already added), or
-- Test the API locally first (`uvicorn main:app --host 127.0.0.1 --port 8000`) and confirm `/app` serves the frontend.
 
 ### Run Real Track Validation
 
