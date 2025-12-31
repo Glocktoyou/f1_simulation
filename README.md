@@ -5,7 +5,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Glocktoyou%2Ff1__simulation-black?style=flat-square&logo=github)](https://github.com/Glocktoyou/f1_simulation)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com/Glocktoyou/f1_simulation)
 
-> 🔗 **Web App (local):** [Open the Web Interface](http://localhost:8000/app) — click to launch the simulator UI in your browser.
+-> 🔗 **Web App (deployed):** [Open the Web Interface](https://f1-simulation-1.onrender.com/app) — click to launch the simulator UI in your browser.
 
 A high-fidelity physics-based simulator for Formula 1 vehicle performance modeling, including realistic tire dynamics, aerodynamic effects, and real-world circuit validation.
 
@@ -501,44 +501,6 @@ Load_transfer_lat = (a_lat * m * h_cg) / track_width
 ```
 
 See [docs/PHYSICS_MODEL.md](docs/PHYSICS_MODEL.md) for detailed derivations.
-
-## 📋 API Reference
-
-### F1Vehicle Class
-
-```python
-vehicle = F1Vehicle()
-
-# Vehicle parameters
-vehicle.mass               # 798 kg (2024 regulation minimum)
-vehicle.tire_mu_peak       # 1.8 (peak friction coefficient)
-vehicle.max_power          # 746 kW (1000 HP)
-
-# Physics methods
-vehicle.calculate_aero_forces(velocity, drs=False)
-vehicle.calculate_corner_speed(radius, downforce_total)
-vehicle.get_axle_normal_loads(longitudinal_acc, lateral_acc)
-vehicle.calculate_tire_force(slip, normal_force)
-vehicle.calculate_max_acceleration(velocity, downforce_total)
-vehicle.calculate_max_braking(velocity, downforce_total)
-```
-
-### Track Class
-
-```python
-track = Track(name="Circuit Name")
-track.add_segment(length, radius, banking, elevation)
-track.get_segment_at_distance(distance)
-```
-
-### Simulation Functions
-
-```python
-telemetry_df, lap_time = simulate_lap(vehicle, track, dt=0.05)
-plot_telemetry(telemetry, lap_time, track_name)
-```
-
-See [docs/API.md](docs/API.md) for complete reference.
 
 ## 🧪 Testing
 
